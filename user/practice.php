@@ -122,36 +122,40 @@
 </body>
 
 </html> -->
+
+
+
+
 <?php
 // Kết nối đến cơ sở dữ liệu
-require '../components/connect.php';
+// require '../components/connect.php';
 
-// Kiểm tra xem có 'exercise_id' trong URL hay không
-if (isset($_GET['exercise_id'])) {
-    $exercise_id = $_GET['exercise_id'];  // Lấy ID bài tập từ URL
-} else {
-    // Nếu không có 'exercise_id', hiển thị thông báo lỗi
-    echo "Bài tập không tồn tại.";
-    exit;  // Dừng mã sau khi hiển thị thông báo lỗi
-}
+// // Kiểm tra xem có 'exercise_id' trong URL hay không
+// if (isset($_GET['exercise_id'])) {
+//     $exercise_id = $_GET['exercise_id'];  // Lấy ID bài tập từ URL
+// } else {
+//     // Nếu không có 'exercise_id', hiển thị thông báo lỗi
+//     echo "Bài tập không tồn tại.";
+//     exit;  // Dừng mã sau khi hiển thị thông báo lỗi
+// }
 
-// Truy vấn câu hỏi và đáp án từ bảng exercises
-$sql = "SELECT title, description, result FROM exercises WHERE id = :exercise_id";
-$stmt = $conn->prepare($sql);
-$stmt->bindParam(':exercise_id', $exercise_id);
-$stmt->execute();
-$exercise = $stmt->fetch();
+// // Truy vấn câu hỏi và đáp án từ bảng exercises
+// $sql = "SELECT title, description, result FROM exercises WHERE id = :exercise_id";
+// $stmt = $conn->prepare($sql);
+// $stmt->bindParam(':exercise_id', $exercise_id);
+// $stmt->execute();
+// $exercise = $stmt->fetch();
 
-// Kiểm tra xem bài tập có tồn tại không
-if (!$exercise) {
-    echo "Bài tập không tồn tại.";
-    exit;
-}
+// // Kiểm tra xem bài tập có tồn tại không
+// if (!$exercise) {
+//     echo "Bài tập không tồn tại.";
+//     exit;
+// }
 
-// Hiển thị thông tin bài tập
-$title = htmlspecialchars($exercise['title']);
-$description = htmlspecialchars($exercise['description']);
-$correct_answer = $exercise['result'];
+// // Hiển thị thông tin bài tập
+// $title = htmlspecialchars($exercise['title']);
+// $description = htmlspecialchars($exercise['description']);
+// $correct_answer = $exercise['result'];
 ?>
 
 <!DOCTYPE html>

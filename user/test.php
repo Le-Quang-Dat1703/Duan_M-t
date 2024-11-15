@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 <html>
 <div id="buttons">
     <button class="number-btn" data-info="Thông tin cho số 1">1</button>
@@ -31,8 +27,53 @@
             console.log(selectedNumber); // In ra số đã chọn (dạng chuỗi)
         });
     });
+    console.log(selectedNumber);
 
-    alert(selectedNumber);
 </script>
+
+</html>
+
+<?php
+require '../components/connect.php';
+$sql = "SELECT id, title, description, result  FROM exercises where id = 1";
+$stmt = $conn->prepare($sql);
+$stmt->bindColumn('id', $id);
+$stmt->bindColumn('title', $title);
+$stmt->bindColumn('description', $description);
+$stmt->bindColumn('result', $result);
+$stmt->execute();
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <?php
+    while ($stmt->fetch())
+    // if (!empty($result)) { 
+    {
+
+        ?>
+        <table border="1">
+            <h3><?php echo $id; ?></h3>
+            <h3><?php echo $title; ?></h3>
+            <h3><?php echo $description; ?></h3>
+            <h3>Result: <?php echo $result; ?></h3>
+        </table>
+
+
+
+        <?php
+        //}
+    }
+    ?>
+
+</body>
 
 </html>
